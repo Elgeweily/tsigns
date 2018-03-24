@@ -86,20 +86,20 @@ My final model is a CNN consisting of 3 convolutional layers + 3 fully connected
 
 | Layer         		|     Description	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| Input | 32x32x1 Grayscale image   							| 
-| 1st Convolution 3x3 | 1x1 stride, valid padding, outputs 30x30x24 |
+| Input | 32x32x1 Grayscale Image   							| 
+| 1st Convolution 3x3 | 1x1 Stride, Valid Padding, Output 30x30x24 |
 | RELU |										|
-| Max pooling	2x2 | 2x2 stride, valid padding, outputs 15x15x24 |
-| 2nd Convolution 3x3 | 1x1 stride, valid padding, outputs 13x13x36 |
+| Max pooling	2x2 | 2x2 Stride, Valid Padding, Output 15x15x24 |
+| 2nd Convolution 3x3 | 1x1 Stride, Valid Padding, Output 13x13x36 |
 | RELU |										|
-| Max pooling	2x2 | 2x2 stride, valid padding, outputs 6x6x36 |
-| 3rd Convolution 3x3 | 1x1 stride, valid padding, outputs 4x4x48 |
+| Max pooling	2x2 | 2x2 Stride, Valid Padding, Output 6x6x36 |
+| 3rd Convolution 3x3 | 1x1 Stride, Valid Padding, Output 4x4x48 |
 | RELU |										|
-| 1st Fully Connected Layer | Input 768 Flattened, Output 384, with 0.6 keep_prob dropout |
+| 1st Fully Connected Layer | Input 768 Flattened, Output 384, with 0.6 keep_prob Dropout |
 | RELU |										|
-| 2nd Fully Connected Layer | Output 192, with 0.6 keep_prob dropout |
+| 2nd Fully Connected Layer | Output 192, with 0.6 keep_prob Dropout |
 | RELU |										|
-| 3rd Fully Connected Layer | Output 96 , with 0.6 keep_prob dropout |
+| 3rd Fully Connected Layer | Output 96, with 0.6 keep_prob Dropout |
 | RELU |										|
 | Output Layer | Output 43 |
 | Softmax |       |
