@@ -63,9 +63,7 @@ Here is an exploratory visualization of the given data sets. The bar charts are 
 
 #### 1. Describe how you preprocessed the image data. What techniques were chosen and why did you choose these techniques? Consider including images showing the output of each preprocessing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc. (OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, and provide example images of the additional data. Then describe the characteristics of the augmented training set like number of images in the set, number of images for each class, etc.)
 
-First, the data is shuffled, since we are going to use batches, and we want each batch to have different sign classes, in order to be as representative of the whole dataset as possible.
-
-Second, I decided to convert the images to grayscale because color has practically no effect on the accuracy of the classification, after all the shape and printing of the sign is what mostly determines it's class, if there were more than one sign class with the same shape and printing but different colors, then color would be very useful, but in our case, removing the color would make the network simpler and reduce the training time.
+As a first step, I decided to convert the images to grayscale because color has practically no effect on the accuracy of the classification, after all the shape and printing of the sign is what mostly determines it's class, if there were more than one sign class with the same shape and printing but different colors, then color would be very useful, but in our case, removing the color would make the network simpler and reduce the training time.
 
 Here is an example of a traffic sign image before and after grayscaling.
 
@@ -113,7 +111,7 @@ My final model is a CNN consisting of 3 convolutional layers + 3 fully connected
 
 #### 3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
 
-To train the model, I used an Adam Optimizer as a backpropagation algorithm, Mean of Cross Entropies as a loss function, softmax function as an Activation for the output layer, batch size of 128 (with shuffling for each batch), 10 epochs, learning rate of 0.001.
+To train the model, I used an Adam Optimizer as a backpropagation algorithm, Mean of Cross Entropies as a loss function, softmax function as an Activation for the output layer, batch size of 128 (with data shuffling for each epoch), 10 epochs, learning rate of 0.001.
 
 #### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
 
