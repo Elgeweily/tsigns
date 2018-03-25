@@ -29,6 +29,11 @@ The goals / steps of this project are the following:
 [image8]: ./writeup/im5.jpg "Traffic Sign 5"
 [image9]: ./writeup/visualize_cnn_trained.jpg "Trained Visualization"
 [image10]: ./writeup/visualize_cnn_untrained.jpg "Untrained Visualization"
+[image11]: ./writeup/s1prob.jpg "S1 Bar Plot"
+[image12]: ./writeup/s2prob.jpg "S2 Bar Plot"
+[image13]: ./writeup/s3prob.jpg "S3 Bar Plot"
+[image14]: ./writeup/s4prob.jpg "S4 Bar Plot"
+[image15]: ./writeup/s5prob.jpg "S5 Bar Plot"
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
@@ -71,17 +76,6 @@ Here is an example of a traffic sign image before and after grayscaling.
 
 As a last step, I normalized the image data, i.e subtracted the mean, in order to center the data around zero, since the weight variables are randomly initialized with zero as the mean, so it makes sense that our data should have a zero mean as well, otherwise the weight variables will spend some of the training time just trying to find out where the mean of our data is, then divided by the standard deviation, which scales down the maximum value of any pixel to near unity, to make sure that bright images won't have a very high activation compared to darker images.
 
-I decided to generate additional data because ... 
-
-To add more data to the the data set, I used the following techniques because ... 
-
-Here is an example of an original image and an augmented image:
-
-![alt text][image3]
-
-The difference between the original data set and the augmented data set is the following ... 
-
-
 #### 2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
 
 My final model is a CNN consisting of 3 convolutional layers + 3 fully connected layers connected to the final output layer as described below:
@@ -116,9 +110,9 @@ To train the model, I used an Adam Optimizer as a backpropagation algorithm, Mea
 #### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
 
 My final model results were:
-* training set accuracy of 99.8% (in Cell [33])
-* validation set accuracy of 97.1% (in Cell [33])
-* test set accuracy of 95.2% (in Cell [34])
+* training set accuracy of 99.7% (in Cell [10])
+* validation set accuracy of 96.6% (in Cell [10])
+* test set accuracy of 94.7% (in Cell [11])
 
 If an iterative approach was chosen:
 * As a starting point I've used Lenet-5 CNN Architecture, which works very well for hand written digits, and relatively well for traffic signs, since traffic signs have printed digits and other abstract shapes and letters that resemble the lines and curves of digits.
@@ -146,66 +140,86 @@ Here are the results of the prediction:
 |:---------------------:|:---------------------------------------------:| 
 | Speed limit (120km/h)	| Go straight or left							| 
 | Priority Road			| Priority Road 								|
-| Stop					| Turn left ahead								|
+| Stop					| Ahead Only									|
 | Road Work				| Road Work					 					|
 | Keep Right			| Keep Right									|
 
 
-The model was able to correctly guess 3 out of 5 traffic signs, which gives it an accuracy of 60%. this is quite far from the accuracy of the test dataset (95%), these 5 images were selected after choosing 5 typical images from the web, that were all classified correcly (100%), so I thought I need to choose difficult to classify images, that will give insight on the shortcomings of the model, so these 5 images did the job, showing that the model is not robust enough to skewed images (the first misclassification), since the images in the provided dataset are all shot from a distance so this issue was not apparent in the test dataset). For the second misclassification, apparently the shadows were heavy enough to confuse the classifier. It is worth noting that when the classifier is confused by distortion, the classification is not even close to the correct classification, which shows that "similar" from a human's point of view is not necessarily "similar" from a machine's point of view, and vice versa, and that the neural network finds it's own criteria for classification which are not necessarily the same criteria used by humans. Apparently the machine thinks that a "120km/h" sign (when distorted enough) looks similar to a "Go straight or left sign"!, which would never be the case from a human's point of view. 
+The model was able to correctly guess 3 out of 5 traffic signs, which gives it an accuracy of 60%, this is quite far from the accuracy of the test dataset (≈95%), these 5 images were selected after choosing 5 typical images from the web that were all classified correcly (100%), so I thought I need to choose difficult to classify images, that will give insight on the shortcomings of the model. The first misclassification shows that the model is not robust enough to skewed images (the images in the provided dataset were all shot from a distance so this issue was not apparent in the test dataset). For the second misclassification, apparently the shadows were heavy enough to confuse the classifier. It is worth noting that when the classifier is confused by distortion, the classification is not even close to the correct classification, which shows that "similar" from a human's point of view is not necessarily "similar" from a machine's point of view, and vice versa, and that the neural network finds it's own criteria for classification which are not necessarily the same criteria used by humans. Apparently the model thinks that a "120km/h" sign (when distorted enough) looks similar to a "Go straight or left" sign!, which would never be the case from a human's point of view. 
 
 #### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
 
 The code for making predictions on my final model is located in the 13th cell of the Ipython notebook.
 
-For the first image, the model is quite sure that this is a Go Straight or Left Sign (probability of 0.97), while the image actually contains a Speed limit (120km/h) sign. The top five soft max probabilities are:
+For the first image, the model is quite sure that this is a Go Straight or Left Sign (probability of 0.83), while the image actually contains a Speed limit (120km/h) sign. The top five soft max probabilities are:
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| .97					| Go Straight or Left							| 
-| .0247					| No Entry 										|
-| .00260				| Roundabout Mandatory							|
-| .00041				| Speed Limit (20km/h)			 				|
-| .00015				| Speed Limit (30km/h)							|
+| .828					| Go Straight or Left							| 
+| .162					| No Entry 										|
+| .0087					| Roundabout Mandatory							|
+| .000658				| Traffic Signals				 				|
+| .000447				| Keep Left										|
+
+![alt text][image11]
 
 For the second image, the model is almost 100% sure that this is a Priority Road Sign, which is the correct classification. The top five soft max probabilities are:
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | ≈1					| Priority Road   								| 
-| e-13					| Roundabout Mandatory 							|
-| e-14					| No Vehicles									|
-| e-14					| Yield			 								|
-| e-14					| Speed Limit (120km/h)							|
+| e-15					| No Vehicles									|
+| e-18					| Roundabout Mandatory							|
+| e-20					| Speed Limit (30km/h)							|
+| e-20					| Yield											|
 
-For the third image, the model is quite sure that this is a Turn Left Ahead Sign (probability of 0.73), while the image actually contains a Stop Sign. The top five soft max probabilities are:
+![alt text][image12]
 
-| Probability         	|     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| .73					| Turn Left Ahead								| 
-| .1189					| Ahead Only									|
-| .04983				| Yield											|
-| .01388				| Priority Road									|
-| .01272				| Go Straight or Right							|
-
-For the fourth image, the model is quite sure that this is a Road Work Sign (probability of 0.98), which is the correct classification. The top five soft max probabilities are:
+For the third image, the model thinks that this is an Ahead Only Sign (probability of 0.53), while the image actually contains a Stop Sign. The top five soft max probabilities are:
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| .98283				| Road Work										| 
-| .0154					| Wild Animals Crossing							|
-| .001468				| Bumpy Road									|
-| .0001728				| Dangerous Curve to the Right					|
-| .00009314				| Bicycles Crossing								|
+| .531					| Ahead Only									| 
+| .2844					| No Passing									|
+| .0600					| Yield											|
+| .03099				| No Vehicles									|
+| .02519				| Turn Left Ahead								|
 
-For the fifth image, the model is almost 100% sure that this is a Keep Right Sign, which is the correct classification. The top five soft max probabilities are:
+![alt text][image13]
+
+For the fourth image, the model is pretty sure that this is a Road Work Sign (probability of 0.946), which is the correct classification. The top five soft max probabilities are:
+
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| .9457					| Road Work										| 
+| .0280					| Bumpy Road									|
+| .0223					| Bicycles Crossing								|
+| .00238				| Slippery Road									|
+| .00129				| Wild Animals Crossing							|
+
+![alt text][image14]
+
+For the fifth image, the model is almost 100% sure that this is a keep Right Sign, which is the correct classification. The top five soft max probabilities are:
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | ≈1					| Keep Right									| 
-| e-18					| Go Straight or Right							|
-| e-20					| Dangerous Curve to the Right					|
-| e-25					| No Entry										|
-| e-25					| Road Work										|
+| e-27					| Dangerous Curve to the Right					|
+| e-27					| Go Straight or Right							|
+| e-28					| Road Work										|
+| e-30					| No Entry										|
+
+![alt text][image15]
+
+Calculating the recall from the test dataset for each of the above 5 sign classes, gives the following results:
+
+* Recall for Speed Limit (120km/h) Sign is equal to 94.7%
+* Recall for Priority Road Sign is equal to 97.4%
+* Recall for Stop Sign is equal to 97.8%
+* Recall for Road Work Sign is equal to 92%
+* Recall for Keep Right Sign is equal to 97.5%
+
+We can see that the 2 sign classes that got incorrectly classified (120km/h and Stop Sign) have quite high recall, which shows that the model is not particularly bad at classifying them, it is just that the chosen images are difficult to classify.
 
 ### (Optional) Visualizing the Neural Network (See Step 4 of the Ipython notebook for more details)
 #### 1. Discuss the visual output of your trained network's feature maps. What characteristics did the neural network use to make classifications?
